@@ -72,7 +72,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     tinyplay \
     tinycap \
-    tinymix \
     tinypcminfo
 
 # Display
