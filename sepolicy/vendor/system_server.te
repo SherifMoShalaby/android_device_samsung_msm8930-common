@@ -1,6 +1,10 @@
+allow system_server adb_data_file:dir getattr;
+allow system_server adb_data_file:file { getattr open read };
 allow system_server alarm_device:chr_file rw_file_perms;
+allow system_server app_zygote:process getpgid;
 allow system_server crash_dump:process getpgid;
 allow system_server dalvikcache_data_file:file rwx_file_perms;
+allow system_server default_android_hwservice:hwservice_manager find;
 allow system_server efs_file:dir search;
 allow system_server efs_file:file r_file_perms;
 allow system_server kernel:process setsched;

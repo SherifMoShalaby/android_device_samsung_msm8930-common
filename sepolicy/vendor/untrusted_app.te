@@ -6,6 +6,7 @@ allow untrusted_app storage_stub_file:dir getattr;
 allow untrusted_app sysfs_batteryinfo:dir r_dir_perms;
 allow untrusted_app sysfs_batteryinfo:file r_file_perms;
 allow untrusted_app tombstone_data_file:dir getattr;
+allow untrusted_app virtual_ab_prop:file { getattr open };
 
 # sdcardfs madness
 #allow untrusted_app sdcard_posix:dir create_dir_perms;

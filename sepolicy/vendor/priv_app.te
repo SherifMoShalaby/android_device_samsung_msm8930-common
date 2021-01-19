@@ -1,0 +1,4 @@
+allow priv_app adbd_prop:file { getattr open };
+allow priv_app alarm_boot_prop:file { getattr open };
+allow priv_app alarm_handled_prop:file { getattr open };
+allow priv_app alarm_instance_prop:file open;
