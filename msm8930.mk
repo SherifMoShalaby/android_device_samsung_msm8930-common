@@ -68,12 +68,6 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     libqcomvoiceprocessing
 
-# TinyAlsa utils
-PRODUCT_PACKAGES += \
-    tinyplay \
-    tinycap \
-    tinypcminfo
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
