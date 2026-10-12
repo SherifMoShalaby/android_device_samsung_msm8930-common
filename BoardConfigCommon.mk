@@ -18,6 +18,9 @@ PLATFORM_PATH := device/samsung/msm8930-common
 # inherit from qcom-common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
 
+BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
+
 # Includes
 TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
 
@@ -38,6 +41,9 @@ TARGET_HAS_MEMFD_BACKPORT := true
 
 # Dedupe VNDK libraries with identical core variants.
 TARGET_VNDK_USE_CORE_VARIANT := true
+
+# VNDK VERSION
+BOARD_VNDK_VERSION := current
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml

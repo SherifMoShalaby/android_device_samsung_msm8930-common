@@ -54,7 +54,7 @@ LOCAL_SHARED_LIBRARIES := \
     libhardware \
     liblog \
     libcamera_client \
-    libgui \
+    \
     libutils \
     android.hidl.token@1.0-utils
 
