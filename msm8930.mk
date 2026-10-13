@@ -145,11 +145,6 @@ PRODUCT_PACKAGES += \
     libwcnss_qmi \
     wcnss_service
 
-# SoftAP
-PRODUCT_PACKAGES += \
-    libQWiFiSoftApCfg \
-    libqsap_sdk
-
 # WiFi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service.legacy \
