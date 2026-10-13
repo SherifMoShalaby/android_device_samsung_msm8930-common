@@ -64,7 +64,8 @@ LOCAL_STATIC_LIBRARIES := \
 LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
-LOCAL_VENDOR_MODULE := true
+# ponytail: lives in /system/lib/hw because it links libcamera_client (platform);
+# Android 14 forbids vendor->platform links. hw_get_module still searches /system.
 
 include $(BUILD_SHARED_LIBRARY)
 
