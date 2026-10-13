@@ -42,9 +42,6 @@ TARGET_HAS_MEMFD_BACKPORT := true
 # Dedupe VNDK libraries with identical core variants.
 TARGET_VNDK_USE_CORE_VARIANT := true
 
-# VNDK VERSION
-BOARD_VNDK_VERSION := current
-
 # HIDL
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
