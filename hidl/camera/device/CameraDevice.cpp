@@ -482,7 +482,15 @@ void CameraDevice::sDataCbTimestamp(nsecs_t timestamp, int32_t msg_type,
         if (mem->mBufSize == sizeof(VideoNativeHandleMetadata)) {
             VideoNativeHandleMetadata* md = (VideoNativeHandleMetadata*)
                     mem->mBuffers[index]->unsecurePointer();
+            // The 2013 msm8960 HAL hands out kMetadataBufferTypeCameraSource
+            // (encoder_media_buffer_type: same layout, handle = fd/offset/size). Send it as a
+            // handle too, so the frame survives the trip from cameraserver to mediaserver.
             if (md->eType == kMetadataBufferTypeNativeHandleSource) {
+                handle = md->pHandle;
+            } else if (md->eType == kMetadataBufferTypeCameraSource && md->pHandle != nullptr) {
+                Mutex::Autolock _l(object->mLegacyMetaLock);
+                object->mLegacyMeta[((uint64_t)mem->handle.mId << 32) | index] =
+                        {(int32_t)md->eType, md->pHandle};
                 handle = md->pHandle;
             }
         }
@@ -841,7 +849,20 @@ void CameraDevice::releaseRecordingFrameLocked(
         void *data = ((uint8_t *)heap->base()) + offset;
         if (handle) {
             VideoNativeHandleMetadata* md = (VideoNativeHandleMetadata*) data;
-            if (md->eType == kMetadataBufferTypeNativeHandleSource) {
+            bool restored = false;
+            {
+                Mutex::Autolock _l(mLegacyMetaLock);
+                auto it = mLegacyMeta.find(((uint64_t)memId << 32) | bufferIndex);
+                if (it != mLegacyMeta.end()) {
+                    // give the legacy HAL its own metadata back
+                    md->eType = (MetadataBufferType)it->second.first;
+                    md->pHandle = it->second.second;
+                    restored = true;
+                }
+            }
+            if (restored) {
+                // nothing to clone: the HAL owns its handle
+            } else if (md->eType == kMetadataBufferTypeNativeHandleSource) {
                 // Input handle will be closed by HIDL transport later, so clone it
                 // HAL implementation is responsible to close/delete the clone
                 native_handle_t* clone = native_handle_clone(handle);

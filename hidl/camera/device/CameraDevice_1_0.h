@@ -162,6 +162,9 @@ private:
     std::unordered_map<MemoryId, CameraHeapMemory*> mMemoryMap;
 
     bool mMetadataMode = false;
+    // HAL-original video metadata per (memId, bufferIndex), restored on release
+    Mutex mLegacyMetaLock;
+    std::unordered_map<uint64_t, std::pair<int32_t, native_handle_t*>> mLegacyMeta;  // eType, pHandle
 
     mutable Mutex mBatchLock;
     // Start of protection scope for mBatchLock
