@@ -44,6 +44,7 @@ ifeq ($(TARGET_ADD_ISO_MODE_HJR),true)
 endif
 
 LOCAL_C_INCLUDES := \
+    $(LOCAL_PATH)/../include \
     framework/native/include \
     system/media/camera/include
 
@@ -53,19 +54,19 @@ LOCAL_SRC_FILES := \
 LOCAL_SHARED_LIBRARIES := \
     libhardware \
     liblog \
-    libcamera_client \
-    \
     libutils \
     android.hidl.token@1.0-utils
 
 LOCAL_STATIC_LIBRARIES := \
-    libarect
+    libarect \
+    camera_parameters_samsung_msm8930
 
 LOCAL_MODULE := camera.$(TARGET_BOARD_PLATFORM)
 LOCAL_MODULE_RELATIVE_PATH := hw
 LOCAL_MODULE_TAGS := optional
-# ponytail: lives in /system/lib/hw because it links libcamera_client (platform);
-# Android 14 forbids vendor->platform links. hw_get_module still searches /system.
+# Vendor module: the vendor camera provider only searches vendor paths. CameraParameters
+# comes from the device's own static copy instead of libcamera_client (platform-only on 14).
+LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
 

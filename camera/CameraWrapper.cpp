@@ -27,7 +27,6 @@
 #define LOG_TAG "CameraWrapper"
 #include <log/log.h>
 
-#include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 #include <hardware/camera.h>
 #include <hardware/hardware.h>

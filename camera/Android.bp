@@ -1,5 +1,7 @@
 cc_library_static {
     name: "camera_parameters_samsung_msm8930",
+    vendor_available: true,
+    shared_libs: ["libutils", "liblog"],
     include_dirs: ["device/samsung/msm8930-common/include"],
     srcs: ["CameraParameters.cpp"],
 }
