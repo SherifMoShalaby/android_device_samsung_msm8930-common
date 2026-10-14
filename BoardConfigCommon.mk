@@ -41,8 +41,8 @@ TARGET_VNDK_USE_CORE_VARIANT := true
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
-# Legacy HIDL HALs predate any FCM level; Android 14 rejects them unless enforcement is off (as on msm8226)
-PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := true
+# Legacy HIDL HALs predate any FCM level: the override value IS the setting, so false turns the check off
+PRODUCT_ENFORCE_VINTF_MANIFEST_OVERRIDE := false
 DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 
 # Exclude serif fonts for saving system.img size.
