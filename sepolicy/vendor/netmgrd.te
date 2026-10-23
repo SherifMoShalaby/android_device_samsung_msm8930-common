@@ -12,3 +12,5 @@ auditallow netmgrd radio_prop:property_service set;
 dontaudit netmgrd self:capability sys_module;
 qmux_socket(netmgrd)
 unix_socket_connect(netmgrd, property, init)
+
+get_prop(netmgrd, vendor_melius_net_prop)

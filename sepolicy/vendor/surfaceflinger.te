@@ -1,2 +1,4 @@
 allow surfaceflinger sysfs_soc_id:file r_file_perms;
 allow surfaceflinger sysfs_thermal:file r_file_perms;
+
+get_prop(surfaceflinger, vendor_melius_graphics_prop)

@@ -12,3 +12,5 @@ allow rild system_app_data_file:dir rw_dir_perms;
 allow rild system_app_data_file:file create_file_perms;
 
 qmux_socket(rild)
+
+get_prop(rild, vendor_rild_libpath_prop)

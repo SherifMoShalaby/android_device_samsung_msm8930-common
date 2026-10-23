@@ -2,3 +2,9 @@ persist.sys.camera.preview    u:object_r:camera_prop:s0
 ro.wcnss.serialno             u:object_r:vendor_wifi_prop:s0
 user.language                 u:object_r:default_prop:s0
 user.region                   u:object_r:default_prop:s0
+
+# Legacy audio and display configuration shared with framework processes.
+audio.offload.disable         u:object_r:vendor_melius_audio_prop:s0
+persist.hwc.mdpcomp.enable    u:object_r:vendor_melius_graphics_prop:s0
+ro.qualcomm.cabl              u:object_r:vendor_melius_graphics_prop:s0
+ro.data.large_tcp_window_size u:object_r:vendor_melius_net_prop:s0

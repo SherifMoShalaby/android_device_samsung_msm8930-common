@@ -1,0 +1,4 @@
+# Legacy blob property names must stay unchanged; framework processes read these.
+vendor_restricted_prop(vendor_melius_audio_prop)
+vendor_restricted_prop(vendor_melius_graphics_prop)
+vendor_restricted_prop(vendor_melius_net_prop)
