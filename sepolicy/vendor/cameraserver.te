@@ -5,5 +5,6 @@ allow cameraserver video_device:dir r_dir_perms;
 allow cameraserver video_device:chr_file rw_file_perms;
 allow cameraserver camera_socket:sock_file write;
 
-# Legacy libmmjpeg.so has text relocations; violates an AOSP neverallow; documented exception for this device only.
-allow cameraserver vendor_file:file execmod;
+# Legacy libmmjpeg.so / libmmcamera_faceproc.so have text relocations; violates an AOSP neverallow;
+# documented exception for this device, limited to those two libraries.
+allow cameraserver vendor_textrel_lib_file:file { read open getattr execute map execmod };

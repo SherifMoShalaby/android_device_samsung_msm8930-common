@@ -12,3 +12,6 @@ type sysfs_mdnie, fs_type, sysfs_type;
 type sysfs_soc_id, fs_type, sysfs_type;
 type wifi_efs_file, file_type;
 type wifihal_socket, file_type, data_file_type;
+
+# Legacy camera libraries with text relocations (only these may be execmod).
+type vendor_textrel_lib_file, vendor_file_type, file_type;
