@@ -8,3 +8,9 @@ allow cameraserver camera_socket:sock_file write;
 # Legacy libmmjpeg.so / libmmcamera_faceproc.so have text relocations; violates an AOSP neverallow;
 # documented exception for this device, limited to those two libraries.
 allow cameraserver vendor_textrel_lib_file:file { read open getattr execute map execmod };
+
+# HALv1 runs in cameraserver on 14; the legacy policy only gave mediaserver the JPEG encoder
+# (/dev/gemini0) and /sys/class/camera.
+allow cameraserver camera_device:chr_file rw_file_perms;
+allow cameraserver sysfs_camera:dir search;
+allow cameraserver sysfs_camera:file r_file_perms;
