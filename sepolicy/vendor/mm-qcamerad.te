@@ -9,3 +9,8 @@ allow mm-qcamerad system_data_file:sock_file create_file_perms;
 allow mm-qcamerad vendor_textrel_lib_file:file { read open getattr execute map execmod };
 
 unix_socket_connect(mm-qcamerad, mpdecision, mpdecision)
+
+# Keep LIBC_DEBUG_MALLOC_OPTIONS (init.qcom.rc) across the init -> mm-qcamerad transition.
+# Without noatsecure the kernel sets AT_SECURE and libc drops it, so the blob's heap
+# under-read crashes the daemon under enforcing.
+allow init mm-qcamerad:process noatsecure;
